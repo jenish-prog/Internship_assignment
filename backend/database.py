@@ -7,7 +7,7 @@ load_dotenv()
 # Database connection URL
 # Defaulting to a standard local PostgreSQL setup for development if env var not set
 # Format: postgresql://user:password@host:port/database
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:password@localhost:5432/internship_app")
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL, echo=True)
 
