@@ -91,6 +91,3 @@ npm run dev
 ```
 The application will be accessible at `http://localhost:5173`.
 
-## 🤝 Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
