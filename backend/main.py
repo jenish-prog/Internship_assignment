@@ -4,12 +4,19 @@ from .database import init_db
 
 app = FastAPI(title="Scalable Web App Backend")
 
-origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+import os
+
+# Get allowed origins from env var, defaulting to local dev URLs
+env_origins = os.getenv("ALLOWED_ORIGINS")
+if env_origins:
+    origins = [origin.strip() for origin in env_origins.split(",")]
+else:
+    origins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
 
 app.add_middleware(
     CORSMiddleware,
