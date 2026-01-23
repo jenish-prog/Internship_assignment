@@ -1,7 +1,13 @@
 import axios from 'axios';
 
+// COMMENT OUT THE VARIABLE LINE:
+// const API_URL = import.meta.env.VITE_API_URL;
+
+// HARDCODE THE HTTPS URL DIRECTLY:
+const API_URL = "https://internshipassignment-production.up.railway.app";
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000',
+  baseURL: API_URL,
 });
 
 api.interceptors.request.use(
