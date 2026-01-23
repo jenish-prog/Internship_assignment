@@ -6,17 +6,19 @@ app = FastAPI(title="Scalable Web App Backend")
 
 import os
 
-# Get allowed origins from env var, defaulting to local dev URLs
+# Default allowed origins (Local + Production)
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://shimmering-renewal-production.up.railway.app",
+]
+
+# Extend with environment variable references if available
 env_origins = os.getenv("ALLOWED_ORIGINS")
 if env_origins:
-    origins = [origin.strip() for origin in env_origins.split(",")]
-else:
-    origins = [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ]
+    origins.extend([origin.strip() for origin in env_origins.split(",")])
 
 app.add_middleware(
     CORSMiddleware,
