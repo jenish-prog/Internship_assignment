@@ -1,26 +1,26 @@
 import axios from 'axios';
 
-// COMMENT OUT THE VARIABLE LINE:
-// const API_URL = import.meta.env.VITE_API_URL;
-
-// HARDCODE THE HTTPS URL DIRECTLY:
+// 🛑 STOP using the variable for now. 
+// ✅ WE ARE HARDCODING HTTPS DIRECTLY:
 const API_URL = "https://internshipassignment-production.up.railway.app";
 
 const api = axios.create({
   baseURL: API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
+// Add a request interceptor to include the token (if you use one)
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 export default api;
