@@ -1,16 +1,18 @@
-from sqlmodel import SQLModel, create_engine, Session
+from sqlmodel import SQLModel, Session
+from sqlalchemy import create_engine
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
-# Database connection URL
-# Defaulting to a standard local PostgreSQL setup for development if env var not set
-# Format: postgresql://user:password@host:port/database
+# 1. Get the variable
 DATABASE_URL = os.getenv("DATABASE_URL")
+
+# 2. FIX: Replace 'postgres://' with 'postgresql://' if needed
 if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
+# 3. Create the engine
 engine = create_engine(DATABASE_URL, echo=True)
 
 def init_db():
