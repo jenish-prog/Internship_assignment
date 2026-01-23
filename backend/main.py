@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 from sqlmodel import SQLModel
 from database import engine
 import models
@@ -8,6 +9,9 @@ import models
 SQLModel.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Scalable Web App Backend")
+
+# ✅ Trust all proxies (Railway uses a proxy)
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=["*"])
 
 import os
 
