@@ -8,6 +8,8 @@ load_dotenv()
 # Defaulting to a standard local PostgreSQL setup for development if env var not set
 # Format: postgresql://user:password@host:port/database
 DATABASE_URL = os.getenv("DATABASE_URL")
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 engine = create_engine(DATABASE_URL, echo=True)
 

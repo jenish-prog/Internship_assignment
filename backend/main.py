@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .database import init_db
+from database import init_db
 
 app = FastAPI(title="Scalable Web App Backend")
 
@@ -37,7 +37,7 @@ def on_startup():
 def read_root():
     return {"message": "Welcome to the API"}
 
-from .routes import auth, users, tasks
+from routes import auth, users, tasks
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(tasks.router)
