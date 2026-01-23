@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database import init_db
+from sqlmodel import SQLModel
+from database import engine
+import models
+
+# ✅ FORCE CREATE TABLES (As requested, adapting for SQLModel)
+SQLModel.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Scalable Web App Backend")
 
