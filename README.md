@@ -22,7 +22,7 @@ A full-stack web application built with a modern tech stack, featuring a respons
 ### Backend
 - **Framework**: FastAPI
 - **Database ORM**: SQLModel
-- **Database Driver**: PyMySQL (MySQL)
+- **Database Driver**: PostgreSQL
 - **Authentication**: Python Jose (JWT), Passlib (Bcrypt)
 
 ## 📂 Project Structure
@@ -44,7 +44,7 @@ A full-stack web application built with a modern tech stack, featuring a respons
 ### Prerequisites
 - Node.js (v18 or higher)
 - Python (v3.9 or higher)
-- MySQL Database
+- PostgreSQL Database
 
 ### 1. Backend Setup
 
